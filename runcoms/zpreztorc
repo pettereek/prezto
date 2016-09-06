@@ -27,7 +27,9 @@ zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
   'editor' \
+  'syntax-highlighting' \
   'history' \
+  'autosuggestions' \
   'directory' \
   'spectrum' \
   'utility' \

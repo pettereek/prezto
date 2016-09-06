@@ -35,6 +35,48 @@ jgtr() {
 }
 
 #
+# Tyson helpers
+#
+TYSON_HOME="$HOME/Soundtrack/syb-custom/tyson"
+
+player() {
+  printcmd() {
+    echo "🍄  $1\n"
+    eval "$1"
+  }
+
+  printdone() {
+    echo "🙏  $1 done"
+  }
+
+  case "$1" in
+    "cd")
+      printcmd "cd $TYSON_HOME"
+      ;;
+    "update")
+      player cd
+      printcmd "git pull --rebase"
+      printcmd "cmake ."
+      printcmd "make -j 4"
+      printdone "$0 $1"
+      ;;
+    "start")
+      player cd
+      printcmd "./player --syb_file=cfg/petter-stage.json"
+      printdone "$0 $1"
+      ;;
+    "cache-clean")
+      player cd
+      printcmd "rm -rf cache"
+      printdone "$0 $1"
+      ;;
+    *)
+      if [[ ! -z $1 ]] echo "$0: '$1' is not a command."
+      echo "Usage: $0 cd|update|start|cache-clean"
+  esac
+}
+
+#
 # The next lines updates PATH for the Google Cloud SDK and enables shell command completion for gcloud.
 #
 source '/Users/pettereek/google-cloud-sdk/path.zsh.inc'

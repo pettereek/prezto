@@ -11,3 +11,58 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+#
+# Set PATH
+#
+export PATH="/Users/pettereek/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:./node_modules/.bin"
+
+#
+# syb-core tests
+#
+gtr() { go test -v -run="$1" }
+jgtr() {
+  TEST_REGEX=$1
+  shift # shift all arguments so that $2 => $1 etc.
+  TEST_FLAGS="$@" # Let TEST_FLAGS be rest of args
+
+  TEST_FILE=$(fgrep -slr "$TEST_REGEX(" {auth,radio,payment}-lib/test geocoding | head -1)
+  if [[ -n $TEST_FILE ]]; then
+    go test -v "./$(dirname $TEST_FILE)/..." -test.run="$TEST_REGEX$" $TEST_FLAGS
+  else
+    echo "Did not find: $TEST_REGEX"
+  fi
+}
+
+#
+# The next lines updates PATH for the Google Cloud SDK and enables shell command completion for gcloud.
+#
+source '/Users/pettereek/google-cloud-sdk/path.zsh.inc'
+source '/Users/pettereek/google-cloud-sdk/completion.zsh.inc'
+
+#
+# nvm Node Version Manager)
+#
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+#
+# Setup GOPATH, PATH for go
+#
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/go_appengine:$PATH"
+
+#
+# Docker config
+#
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/pettereek/.boot2docker/certs/boot2
+export DOCKER_TLS_VERIFY=1
+
+#
+# The Fuck config
+# https://github.com/nvbn/thefuck#installation
+#
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias FUCK)"

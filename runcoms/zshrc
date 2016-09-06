@@ -66,3 +66,9 @@ export DOCKER_TLS_VERIFY=1
 #
 eval "$(thefuck --alias)"
 eval "$(thefuck --alias FUCK)"
+
+#
+# Jump
+# https://github.com/gsamokovarov/jump#installation
+#
+eval "$(jump shell zsh)"

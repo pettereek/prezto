@@ -114,3 +114,9 @@ eval "$(thefuck --alias FUCK)"
 # https://github.com/gsamokovarov/jump#installation
 #
 eval "$(jump shell zsh)"
+
+#
+# Td
+# https://github.com/Swatto/td
+#
+export TODO_DB_PATH=$HOME/.td/db.json

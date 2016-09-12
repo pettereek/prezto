@@ -116,7 +116,7 @@ eval "$(thefuck --alias FUCK)"
 eval "$(jump shell zsh)"
 
 #
-# Td
-# https://github.com/Swatto/td
+# swiftenv
+# https://github.com/kylef/swiftenv/#installation
 #
-export TODO_DB_PATH=$HOME/.td/db.json
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi

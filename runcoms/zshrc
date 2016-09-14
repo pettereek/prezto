@@ -120,3 +120,8 @@ eval "$(jump shell zsh)"
 # https://github.com/kylef/swiftenv/#installation
 #
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
+#
+# reminders-cli
+#
+alias rem=reminders

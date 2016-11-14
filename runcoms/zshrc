@@ -86,7 +86,7 @@ source '/Users/pettereek/google-cloud-sdk/completion.zsh.inc'
 # nvm Node Version Manager
 #
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+source $NVM_DIR/nvm.sh
 
 #
 # Setup GOPATH, PATH for go

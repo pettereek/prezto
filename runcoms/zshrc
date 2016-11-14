@@ -15,7 +15,7 @@ fi
 #
 # Set PATH
 #
-export PATH="/Users/pettereek/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:./node_modules/.bin"
+export PATH="/Users/pettereek/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:./node_modules/.bin"
 
 #
 # syb-core tests

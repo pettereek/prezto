@@ -96,13 +96,6 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go_appengine:$PATH"
 
 #
-# Docker config
-#
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/pettereek/.boot2docker/certs/boot2
-export DOCKER_TLS_VERIFY=1
-
-#
 # The Fuck config
 # https://github.com/nvbn/thefuck#installation
 #

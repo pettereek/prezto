@@ -118,3 +118,21 @@ if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 # reminders-cli
 #
 alias rem=reminders
+
+#
+# kubectl
+#
+source <(kubectl completion zsh)
+alias kc="kubectl"
+
+#
+# hibernation
+#
+alias sleepsafe='sudo pmset -a destroyfvkeyonstandby 1 hibernatemode 25'
+alias sleepfast='sudo pmset -a hibernatemode 0'
+alias sleepdefault='sudo pmset -a hibernatemode 3'
+
+#
+# priv
+#
+source './zshrcpriv'

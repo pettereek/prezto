@@ -34,12 +34,26 @@ jgtr() {
   fi
 }
 
-snooze() {
-  for i in `seq 2 0`; do
-    echo -ne "  😴  Snoozing tests for $i \r"
+snoozetest() {
+  local frames="🕐🕑🕒🕓🕔🕕🕖🕖🕗🕘🕙🕚🕛"
+  local sound="/System/Library/Sounds/Pop.aiff"
+  local max=99
+
+  for i in $(seq 0 $max)
+  do
+    countdown="$(($max - $i))"
+    message="😴  Snoozing tests... $frames[$(($i % ${#frames})) + 1]"
+    lim=$(($(tput cols) - ${#countdown}))
+
+    echo -n "\r"
+    printf '%*.*b%s' ${#message} $lim "$message $(printf '%0.1s' " "{1..$lim})" $countdown
+
     sleep 1
   done
-  echo "\n  ⏰  Time for some tests!"
+
+  echo "\n⏰  Time for some tests, yay!"
+  afplay "$sound"
+
   make test
 }
 

@@ -34,6 +34,15 @@ jgtr() {
   fi
 }
 
+snooze() {
+  for i in `seq 2 0`; do
+    echo -ne "  😴  Snoozing tests for $i \r"
+    sleep 1
+  done
+  echo "\n  ⏰  Time for some tests!"
+  make test
+}
+
 #
 # Tyson helpers
 #
@@ -135,4 +144,4 @@ alias sleepdefault='sudo pmset -a hibernatemode 3'
 #
 # priv
 #
-source './zshrcpriv'
+source '/Users/pettereek/.zprezto/runcoms/zshrcpriv'

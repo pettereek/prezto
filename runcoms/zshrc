@@ -102,14 +102,23 @@ player() {
 #
 # The next lines updates PATH for the Google Cloud SDK and enables shell command completion for gcloud.
 #
-source '/Users/pettereek/google-cloud-sdk/path.zsh.inc'
-source '/Users/pettereek/google-cloud-sdk/completion.zsh.inc'
+gcloudPaths=(
+/Users/pettereek/google-cloud-sdk/path.zsh.inc
+/Users/pettereek/google-cloud-sdk/completion.zsh.inc
+)
+for path in "${gcloudPaths[@]}"; do
+  if [ -f $path ]; then
+    source $path
+  fi
+done
 
 #
 # nvm Node Version Manager
 #
 export NVM_DIR=~/.nvm
-source $NVM_DIR/nvm.sh
+if [ -f $NVM_DIR/nvm.sh ]; then
+  source $NVM_DIR/nvm.sh
+fi
 
 #
 # Setup GOPATH, PATH for go
@@ -122,20 +131,22 @@ export PATH="/usr/local/go_appengine:$PATH"
 # The Fuck config
 # https://github.com/nvbn/thefuck#installation
 #
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias FUCK)"
+if type thefuck > /dev/null; then
+  eval "$(thefuck --alias)"
+  eval "$(thefuck --alias FUCK)"
+fi
 
 #
 # Jump
 # https://github.com/gsamokovarov/jump#installation
 #
-eval "$(jump shell zsh)"
+if type jump > /dev/null; then eval "$(jump shell zsh)"; fi
 
 #
 # swiftenv
 # https://github.com/kylef/swiftenv/#installation
 #
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+if type swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 #
 # reminders-cli
@@ -145,7 +156,7 @@ alias rem=reminders
 #
 # kubectl
 #
-source <(kubectl completion zsh)
+if type kubectl > /dev/null; then source <(kubectl completion zsh); fi
 alias kc="kubectl"
 
 #

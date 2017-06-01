@@ -170,6 +170,11 @@ alias sleepfast='sudo pmset -a hibernatemode 0'
 alias sleepdefault='sudo pmset -a hibernatemode 3'
 
 #
+# conda
+#
+export PATH="$PATH:/Users/pettereek/miniconda2/bin"
+
+#
 # priv
 #
 source '/Users/pettereek/.zprezto/runcoms/zshrcpriv'

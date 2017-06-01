@@ -133,7 +133,10 @@ export PATH="/usr/local/go_appengine:$PATH"
 #
 if type thefuck > /dev/null; then
   eval "$(thefuck --alias)"
-  eval "$(thefuck --alias FUCK)"
+  eval "$(thefuck --alias oops)"
+  eval "$(thefuck --alias ooops)"
+  eval "$(thefuck --alias oooops)"
+  eval "$(thefuck --alias ooooops)"
 fi
 
 #

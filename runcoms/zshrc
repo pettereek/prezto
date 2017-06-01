@@ -62,7 +62,7 @@ player() {
       ;;
     "start")
       player cd
-      printcmd "./player --syb_file=cfg/petter-stage.json"
+      printcmd "./player-cli/player-cli --syb_file=cfg/petter-stage.json"
       printdone "$0 $1"
       ;;
     "cache-clean")

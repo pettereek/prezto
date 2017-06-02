@@ -83,9 +83,9 @@ gcloudPaths=(
 /Users/pettereek/google-cloud-sdk/path.zsh.inc
 /Users/pettereek/google-cloud-sdk/completion.zsh.inc
 )
-for path in "${gcloudPaths[@]}"; do
-  if [ -f $path ]; then
-    source $path
+for p in "${gcloudPaths[@]}"; do
+  if [ -f $p ]; then
+    source $p
   fi
 done
 

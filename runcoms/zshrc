@@ -30,7 +30,7 @@ jgtr() {
   shift # shift all arguments so that $2 => $1 etc.
   TEST_FLAGS="$@" # Let TEST_FLAGS be rest of args
 
-  TEST_FILE=$(fgrep -slr "$TEST_REGEX(" {auth,radio,payment}-lib/test geocoding | head -1)
+  TEST_FILE=$(fgrep -slr "$TEST_REGEX(" {auth,radio,payment}/test geocoding | head -1)
   if [[ -n $TEST_FILE ]]; then
     go test -v "./$(dirname $TEST_FILE)/..." -test.run="$TEST_REGEX$" $TEST_FLAGS
   else

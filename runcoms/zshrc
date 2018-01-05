@@ -5,6 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Add completions before sourcing Prezto, the zsh completion module will call
+# compinit and must then have all completions in $fpath
+fpath=(~/Development/reminders-cli/zsh $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"

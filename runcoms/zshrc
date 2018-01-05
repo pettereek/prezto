@@ -54,6 +54,10 @@ player() {
   printcmd() {
     echo "🍄  $1\n"
     eval "$1"
+    if [ $? != 0 ]; then
+      echo "\n🚫  $1 failed"
+      return 1
+    fi
   }
 
   printdone() {
@@ -66,19 +70,19 @@ player() {
       ;;
     "update")
       player cd
-      printcmd "git pull --rebase"
-      printcmd "cmake ."
-      printcmd "make -j 4"
+      printcmd "git pull --rebase" && \
+      printcmd "cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ." && \
+      printcmd "ninja" && \
       printdone "$0 $1"
       ;;
     "start")
       player cd
-      printcmd "./player-cli/player-cli --syb_file=cfg/petter-stage.json"
+      printcmd "./player-cli/player-cli --syb_file=cfg/petter-stage.json --enable-webserver --log=tyson" && \
       printdone "$0 $1"
       ;;
     "cache-clean")
       player cd
-      printcmd "rm -rf cache"
+      printcmd "rm -rf cache" && \
       printdone "$0 $1"
       ;;
     *)

@@ -152,7 +152,7 @@ alias rem=reminders
 # kubectl
 #
 if type kubectl > /dev/null; then source <(kubectl completion zsh); fi
-alias kc="kubectl"
+alias kc=kubectl
 
 #
 # hibernation

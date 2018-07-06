@@ -169,7 +169,7 @@ export PATH="$PATH:/Users/pettereek/miniconda2/bin"
 #
 # priv
 #
-source '/Users/pettereek/.zprezto/runcoms/zshrcpriv'
+source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrcpriv"
 
 #
 # asdf

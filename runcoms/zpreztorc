@@ -134,10 +134,8 @@ zstyle ':prezto:module:prompt' theme 'machado'
 #   'root'
 #
 # Set syntax highlighting styles.
-# zstyle ':prezto:module:syntax-highlighting' styles \
-#   'builtin' 'bg=blue' \
-#   'command' 'bg=blue' \
-#   'function' 'bg=blue'
+zstyle ':prezto:module:syntax-highlighting' styles \
+  'unknown-token' 'fg=red' # override the default bold red
 
 #
 # Terminal

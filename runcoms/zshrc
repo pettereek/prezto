@@ -17,11 +17,6 @@ fi
 # Customize to your needs...
 
 #
-# Set PATH
-#
-export PATH="/Users/pettereek/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:./node_modules/.bin"
-
-#
 # syb-core tests
 #
 gtr() { go test -v -run="$1" }
@@ -48,7 +43,7 @@ jsyb() {
 #
 # Tyson helpers
 #
-TYSON_HOME="$HOME/Soundtrack/syb-custom/tyson"
+TYSON_HOME="$HOME/Development/Soundtrack/syb-custom/tyson"
 
 player() {
   printcmd() {
@@ -92,44 +87,35 @@ player() {
 }
 
 #
-# The next lines updates PATH for the Google Cloud SDK and enables shell command completion for gcloud.
+# asdf
 #
-gcloudPaths=(
-/Users/pettereek/google-cloud-sdk/path.zsh.inc
-/Users/pettereek/google-cloud-sdk/completion.zsh.inc
-)
-for p in "${gcloudPaths[@]}"; do
-  if [ -f $p ]; then
-    source $p
-  fi
-done
+. $HOME/.asdf/asdf.sh
 
 #
-# nvm Node Version Manager
-#
-export NVM_DIR=~/.nvm
-if [ -f $NVM_DIR/nvm.sh ]; then
-  source $NVM_DIR/nvm.sh
-fi
-
-#
-# Setup GOPATH, PATH for go
+# Golang
+# Note: This needs to happen after asdf for the commands to work
 #
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/local/Cellar/go@1.8/1.8.5/bin:$PATH"
+# Since go is not installed in the default directory we need to set GOROOT
+GV=$(asdf current golang | sed  's/ (set by .*)//g')
+GR=$(asdf where golang $GV)
+export GOROOT=$GR/go
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 #
-# The Fuck config
-# https://github.com/nvbn/thefuck#installation
+# Google Cloud SDK
 #
-if type thefuck > /dev/null; then
-  eval "$(thefuck --alias)"
-  eval "$(thefuck --alias oops)"
-  eval "$(thefuck --alias ooops)"
-  eval "$(thefuck --alias oooops)"
-  eval "$(thefuck --alias ooooops)"
-fi
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+#
+# nvm (Node Version Manager)
+#
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #
 # Jump
@@ -138,41 +124,32 @@ fi
 if type jump > /dev/null; then eval "$(jump shell zsh)"; fi
 
 #
-# swiftenv
-# https://github.com/kylef/swiftenv/#installation
-#
-if type swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
-
-#
-# reminders-cli
-#
-alias rem=reminders
-
-#
 # kubectl
+# https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion
 #
 if type kubectl > /dev/null; then source <(kubectl completion zsh); fi
 alias kc=kubectl
+alias k=kubectl
 
 #
-# hibernation
+# Editor
 #
-alias sleepsafe='sudo pmset -a destroyfvkeyonstandby 1 hibernatemode 25'
-alias sleepfast='sudo pmset -a hibernatemode 0'
-alias sleepdefault='sudo pmset -a hibernatemode 3'
+export EDITOR=nvim
+alias vim=nvim
+alias zshconfig="nvim $HOME/.zshrc"
 
 #
-# conda
+# Prefer local binaries
 #
-export PATH="$PATH:/Users/pettereek/miniconda2/bin"
+export PATH=$HOME/bin:$PATH
+
+#
+# macOS
+#
+alias pbcopy="xclip -sel c"
+alias pbpaste="xclip -sel c -o"
 
 #
 # priv
 #
 source "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrcpriv"
-
-#
-# asdf
-#
-. $HOME/.asdf/asdf.sh
-#. $HOME/.asdf/completions/asdf.bash
